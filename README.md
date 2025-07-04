@@ -64,8 +64,8 @@ This app uses [The Movie Database (TMDB) API](https://developer.themoviedb.org/)
 
 ## 🔗 Live Demo
 
-Coming soon on [Vercel](https://vercel.com)
-Currently available at: [GitHub Pages](https://moriyaarami.github.io/Movie-Picker)
+
+Currently available at: [vercel] (https://movie-picker-opal.vercel.app/))
 
 ---
 
