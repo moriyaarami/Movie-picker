@@ -25,6 +25,29 @@ export type FavoriteMovie = {
     release_date: string;
 }
 
+export type TrailerType = {
+    id: string,
+    key: string,
+    site: string
+}
+
+export async function GetTrailer(id: number) {
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`)
+        const data = await response.json();
+        const results = data.results;
+        const trailerInfo = results.find((info: any) => info.type === 'Trailer'
+        )
+        console.log(trailerInfo)
+
+        return trailerInfo;
+    } catch (err) {
+        console.log(err)
+    }
+
+
+}
+
 export async function GetRandomMovie() {
     const randomPage: number = Math.floor(Math.random() * 300) + 1
 
@@ -43,6 +66,7 @@ export async function GetRandomMovie() {
 
     } catch (err) {
         console.log(err)
+
     }
 }
 export type Gener = {

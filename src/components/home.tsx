@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import { GetGener, GetRandomMovie, type Gener } from '../services/apiServices';
+import { GetGener, GetRandomMovie, GetTrailer, type Gener } from '../services/apiServices';
 import { type Movie } from '../services/apiServices';
 import ShowMovie from './showMovie';
 import Form from './form';
@@ -13,11 +13,14 @@ export default function Home() {
     const [isLoading, setIsLoading] = useState(false);
     const [lastMovie, setLastMovie] = useState<number>();
 
+
+
     const handleOnClick = () => {
         const fetchRandomMovie = async () => {
 
             setIsLoading(true)
             const fetchMovie: Movie | undefined = await GetRandomMovie();
+
             setMovie(fetchMovie);
 
             setLastMovie(movie?.id)
@@ -27,10 +30,8 @@ export default function Home() {
                 setCurrentGeners(genres?.filteredGenres)
             }
             setIsLoading(false)
-
         }
         fetchRandomMovie();
-
 
     }
 
@@ -40,6 +41,10 @@ export default function Home() {
         setCurrentGeners(geners?.filteredGenres)
 
     }
+
+
+
+
     return <>
         <header>
             <h2>What to watch today?</h2>

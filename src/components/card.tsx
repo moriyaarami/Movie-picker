@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
-import type { FavoriteMovie } from "../services/apiServices"
+import { GetTrailer, type FavoriteMovie } from "../services/apiServices"
 import '../style/card.css'
 type MoviePropType = {
     movie: FavoriteMovie,
@@ -8,6 +8,20 @@ type MoviePropType = {
 }
 
 export default function Card({ movie, removeFavorite }: MoviePropType) {
+
+
+    const handleWatchTrailer = async () => {
+        const trailerInfo = await GetTrailer(movie.id);
+        console.log(trailerInfo)
+        if (trailerInfo?.site === 'YouTube') {
+            const trailerUrl = (`https://www.youtube.com/watch?v=${trailerInfo.key}`
+            )
+            window.open(trailerUrl, "_blank");
+        }
+    }
+
+
+
     return <div className="card" key={movie.id}>
         <div className="image">
             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="the poster of the movie" />
@@ -31,6 +45,7 @@ export default function Card({ movie, removeFavorite }: MoviePropType) {
 
                 </p>
             </div>
+            <button id="button" onClick={handleWatchTrailer}>Trailer</button>
         </div>
     </div>
 }

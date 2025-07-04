@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import type { Gener, Movie } from "../services/apiServices"
+import { GetTrailer, type Gener, type Movie } from "../services/apiServices"
 import { faHeart } from "@fortawesome/free-regular-svg-icons"
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
@@ -9,11 +9,10 @@ import { getFromLocalStorage, saveToLocalStorage } from "../services/localStorag
 type componentProps = {
     movie: Movie,
     currentGeners: Gener[] | undefined,
-    lastMovieId: number | undefined
+    lastMovieId: number | undefined,
 }
 
-export default function ShowMovie({ movie, currentGeners,
-}: componentProps) {
+export default function ShowMovie({ movie, currentGeners }: componentProps) {
 
     const [isFavorite, setIsFavorite] = useState(false);
 
@@ -23,13 +22,14 @@ export default function ShowMovie({ movie, currentGeners,
             return;
         }
         setIsFavorite(favoriteMovies?.includes(movie.id))
+
+
     }, [movie])
 
 
     const handleFavorite = (movieId: number) => {
 
         setIsFavorite(prev => !prev)
-
         const favoriteMovies = getFromLocalStorage<number[]>('favoriteList')
 
         if (favoriteMovies?.includes(movieId)) {
@@ -39,6 +39,20 @@ export default function ShowMovie({ movie, currentGeners,
         } else {
             const updateFavorites = [...(favoriteMovies || []), movieId];
             saveToLocalStorage('favoriteList', updateFavorites)
+
+        }
+
+    }
+
+    const handleWatchTrailer = async () => {
+        if (movie) {
+            const trailerInfo = await GetTrailer(movie.id);
+            console.log(trailerInfo)
+            if (trailerInfo?.site === 'YouTube') {
+                const trailerUrl = (`https://www.youtube.com/watch?v=${trailerInfo.key}`
+                )
+                window.open(trailerUrl, "_blank");
+            }
 
         }
 
@@ -71,8 +85,9 @@ export default function ShowMovie({ movie, currentGeners,
 
                 </p>
 
-            </div>
 
+            </div>
+            <button className="trailer" id="button" onClick={handleWatchTrailer}  >Trailer</button>
 
         </>
 

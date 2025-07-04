@@ -80,6 +80,14 @@ section .rate-favorite {
   align-items: center;
 }
 
+section .trailer {
+  width: 40%;
+
+  margin: 10px;
+  text-align: center;
+
+}
+
 /* ריבוע אפשרויות סינון */
 aside .box {
   display: flex;

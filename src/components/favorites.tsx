@@ -58,33 +58,7 @@ export default function Favorite() {
                 <div className="cards-container">
 
                     {favoriteMovies.map((favoriteMovie) => {
-                        return <Card movie={favoriteMovie} removeFavorite={handleFavorite} ></Card>
-
-                        /*     return <div className="card" key={index}>
-                                <div className="image">
-                                    <img src={`https://image.tmdb.org/t/p/w500/${favoriteMovie.poster_path}`} alt="the poster of the movie" />
-                                </div>
-                                <div className="card-titel">
-                                    <h3>{favoriteMovie.title}</h3>
-                                </div>
-                                <div className="card-body">
-                                    <p>{Math.floor(favoriteMovie.vote_average)} ⭐</p>
-                                    <p>{favoriteMovie.genres.map((gener) => gener.name).join(', ')}</p>
-                                    <div className="rate-favorite">
-                                        <p>
-                                            <span>
-                                                {favoriteMovie.release_date}
-                                            </span></p>
-                                        <p>
-                                            <span >
-                                                <FontAwesomeIcon icon={faHeartSolid} onClick={() => handleFavorite(favoriteMovie.id)} />
-                                            </span>
-    
-    
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> */
+                        return <Card movie={favoriteMovie} removeFavorite={handleFavorite} key={favoriteMovie.id}></Card>
                     })}
 
                 </div>
