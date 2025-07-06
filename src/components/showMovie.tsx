@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { GetTrailer, type Gener, type Movie } from "../services/apiServices"
+import { type Gener, type Movie, type TrailerType } from "../services/apiServices"
 import { faHeart } from "@fortawesome/free-regular-svg-icons"
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
@@ -9,10 +9,11 @@ import { getFromLocalStorage, saveToLocalStorage } from "../services/localStorag
 type componentProps = {
     movie: Movie,
     currentGeners: Gener[] | undefined,
-    lastMovieId: number | undefined,
+    trailerInfo: TrailerType | undefined
+
 }
 
-export default function ShowMovie({ movie, currentGeners }: componentProps) {
+export default function ShowMovie({ movie, currentGeners, trailerInfo }: componentProps) {
 
     const [isFavorite, setIsFavorite] = useState(false);
 
@@ -45,9 +46,8 @@ export default function ShowMovie({ movie, currentGeners }: componentProps) {
     }
 
     const handleWatchTrailer = async () => {
-        if (movie) {
-            const trailerInfo = await GetTrailer(movie.id);
-            console.log(trailerInfo)
+        if (trailerInfo) {
+
             if (trailerInfo?.site === 'YouTube') {
                 const trailerUrl = (`https://www.youtube.com/watch?v=${trailerInfo.key}`
                 )
@@ -87,7 +87,8 @@ export default function ShowMovie({ movie, currentGeners }: componentProps) {
 
 
             </div>
-            <button className="trailer" id="button" onClick={handleWatchTrailer}  >Trailer</button>
+            {trailerInfo && <button className="trailer" id="button" onClick={handleWatchTrailer}>Trailer</button>}
+
 
         </>
 

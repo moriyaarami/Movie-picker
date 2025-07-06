@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import { GetGener, GetRandomMovie, GetTrailer, type Gener } from '../services/apiServices';
+import { GetGener, GetRandomMovie, GetTrailer, type Gener, type TrailerType } from '../services/apiServices';
 import { type Movie } from '../services/apiServices';
 import ShowMovie from './showMovie';
 import Form from './form';
@@ -11,9 +11,7 @@ export default function Home() {
     const [movie, setMovie] = useState<Movie>();
     const [currentGeners, setCurrentGeners] = useState<Gener[]>();
     const [isLoading, setIsLoading] = useState(false);
-    const [lastMovie, setLastMovie] = useState<number>();
-
-
+    const [trailerInfo, setTrailerInfo] = useState<TrailerType | undefined>()
 
     const handleOnClick = () => {
         const fetchRandomMovie = async () => {
@@ -23,11 +21,11 @@ export default function Home() {
 
             setMovie(fetchMovie);
 
-            setLastMovie(movie?.id)
-
             if (fetchMovie) {
                 const genres = await GetGener(fetchMovie?.genre_ids)
-                setCurrentGeners(genres?.filteredGenres)
+                setCurrentGeners(genres?.filteredGenres);
+                const trailerInfo = await GetTrailer(fetchMovie.id);
+                setTrailerInfo(trailerInfo)
             }
             setIsLoading(false)
         }
@@ -59,7 +57,8 @@ export default function Home() {
 
         <main>
             <section >
-                {movie && <ShowMovie movie={movie} currentGeners={currentGeners} lastMovieId={lastMovie} />}
+                {movie && <ShowMovie movie={movie} currentGeners={currentGeners}
+                    trailerInfo={trailerInfo} />}
             </section >
             <aside>
                 <div className="box">
