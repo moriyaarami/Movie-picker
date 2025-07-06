@@ -36,7 +36,7 @@ export default function Form({ showMovie }: FormProps) {
 
         const movie: Movie = await filterSearch({ currentGener: currentGener, currentYear: currentYear, currentRating: currentRating })
         if (movie == undefined) {
-            setMessage(`We couldn't find something random for you to watch.Let's try again!`);
+            setMessage(`We couldn't find anything random for you to watch. Let's try again!`);
             setTimeout(() => setMessage(''), 5000)
         }
         showMovie(movie)
