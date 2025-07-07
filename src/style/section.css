@@ -1,0 +1,32 @@
+section .image img {
+    width: 200px;
+    height: 200px;
+}
+
+
+section h3 {
+    margin: 10px 0;
+}
+
+section p {
+    margin: 5px 0;
+}
+
+section .gener {
+    padding: 5px;
+
+}
+
+section .rate-favorite {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section .trailer {
+    width: 40%;
+
+    margin: 10px;
+    text-align: center;
+}

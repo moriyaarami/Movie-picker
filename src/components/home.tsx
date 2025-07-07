@@ -1,4 +1,4 @@
-
+import '../style/home.css'
 import { useState } from 'react'
 import { GetGener, GetRandomMovie, GetTrailer, type Gener, type TrailerType } from '../services/apiServices';
 import { type Movie } from '../services/apiServices';

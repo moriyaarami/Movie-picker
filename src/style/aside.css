@@ -1,0 +1,42 @@
+aside .box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+aside .box h2 {
+    margin-bottom: 10px;
+}
+
+aside .box div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 10px;
+}
+
+aside .box form div span select {
+    width: 100%;
+}
+
+aside .box input[type="range"] {
+    width: 100%;
+}
+
+aside form .showYear {
+    font-size: 10px;
+    text-align: center;
+}
+
+.clipLoader {
+    margin: auto;
+}
+
+.error-section {
+    text-align: center;
+    border: 1px solid rgb(85, 83, 83);
+    border-radius: 4px;
+    padding: 2px;
+    box-shadow: 5px 5px 8px black;
+}

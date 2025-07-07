@@ -4,6 +4,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons"
 import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
 import { getFromLocalStorage, saveToLocalStorage } from "../services/localStorageUtils"
+import '../style/section.css'
 
 
 type componentProps = {

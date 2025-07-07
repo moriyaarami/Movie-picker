@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react"
 import { filterSearch, GetGener, type Gener, type Movie } from "../services/apiServices"
 import { ClipLoader } from "react-spinners";
+import '../style/aside.css'
 
 type FormProps = {
     showMovie: (movie: Movie) => void
